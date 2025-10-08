@@ -6,7 +6,7 @@ Peder Hetland Flaat
 Jørgen Lundell Larsen
 
 
-
+### ALLTID GIT FETCH FØR MAN GJØR NOE
 
 How to run: 
 python -m venv venv, lage .venv, førstegangs
