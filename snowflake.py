@@ -12,9 +12,11 @@ def snowflake(turtle, depth):
         snowflake(turtle, depth-1)  #                F
         turtle.left(60)             #                  +
         snowflake(turtle, depth-1)  #                    F
+def complete_flake(t):
+    for _ in range(3):
+        snowflake(t, 3)
+        t.right(120)
+    plt.show()
 
 t = Turtle(interactive=False)
-for _ in range(3):
-    snowflake(t, 3)
-    t.right(120)
-plt.show()
+complete_flake(t)
