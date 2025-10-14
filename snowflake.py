@@ -13,11 +13,13 @@ def snowflake(turtle, depth, step):
         turtle.left(60)
         snowflake(turtle, depth - 1, step)
 
-def complete_flake(t, depth=3, step=8):
+def complete_flake(t, depth=3, step=8, linesize=1):
+    t.width(linesize)
     for _ in range(3):
         snowflake(t, depth, step)
         t.right(120)
     plt.show()
 
 t = Turtle(interactive=False)
-complete_flake(t, depth=3, step=3) 
+
+complete_flake(t, depth=3, step=9,linesize=1) 
