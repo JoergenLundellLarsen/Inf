@@ -10,7 +10,6 @@ Jørgen Lundell Larsen
 
 How to run first time install: 
 python -m venv venv ###lage .venv, førstegangs
-venv\Scripts\activate.bat ###for å aktivere .venv gjøres i cmd
 eller .\venv\Scripts\Activate ### gitbash/python terminal -> sørg for at du er i riktig folder ved kommandoen cd "folder"
 
 for å installere pakkene vi bruker i venv:
