@@ -10,7 +10,8 @@ Jørgen Lundell Larsen
 
 How to run first time install: 
 python -m venv venv ###lage .venv, førstegangs
-eller .\venv\Scripts\Activate ### gitbash/python terminal -> sørg for at du er i riktig folder ved kommandoen cd "folder"
+eller .\venv\Scripts\Activate ### gitbash/python terminal -> sørg for at du er i riktig folder ved kommandoen cd "folder" og 
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 for å installere pakkene vi bruker i venv:
 
