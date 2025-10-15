@@ -1,104 +1,62 @@
-#!/usr/bin/env python3
-"""
-Fractal plant (L‑system) – Task 4 helper script.
+import math
+import matplotlib.pyplot as plt
 
-Usage:
-  python plant.py --iters 5 --angle 25 --step 6
+angle = 25
+step = 3
+depth = 5
 
-Keys in the grammar:
-  F: draw forward
-  f: move forward without drawing
-  +: turn right by <angle> degrees
-  -: turn left by <angle> degrees
-  [: push state (position, heading, pen size)
-  ]: pop state
-  X: non-drawing symbol used in productions
+#lagrer alle linjer som (x1, y1, x2, y2)
+segments = []
+stack = []
 
-Default rules = classic “fractal plant”:
-  axiom: X
-  rules:
-    X -> F+[[X]-X]-F[-FX]+X
-    F -> FF
-  angle: 25°
+x, y = 0.0, -250.0
+heading = 60 
 
-You can tweak --iters (depth), --angle and --step to suit your screen.
-"""
+def forward():
+    global x, y
+    rad = math.radians(heading)
+    newx = x + step * math.cos(rad)
+    newy = y + step * math.sin(rad)
+    segments.append((x, y, newx, newy))
+    x, y = newx, newy
 
-from __future__ import annotations
-import argparse
-import turtle
-from dataclasses import dataclass
-from typing import Dict, Tuple, List
+def F(d):
+    if d == 0:
+        forward()
+    else:
+        F(d - 1)
+        F(d - 1)
 
-@dataclass
-class LSystem:
-    axiom: str
-    rules: Dict[str, str]
+def X(d):
+    global heading, x, y
+    if d == 0:
+        return
+    F(d - 1)
+    heading -= angle                     # -
+    # [[X]+X]
+    stack.append((x, y, heading))
+    X(d - 1)
+    heading += angle                     # +
+    X(d - 1)
+    if stack: x, y, heading = stack.pop()
+    heading += angle                     # +
+    F(d - 1)
+    # [+FX]
+    stack.append((x, y, heading))
+    heading += angle                     # +
+    F(d - 1)
+    X(d - 1)
+    if stack: x, y, heading = stack.pop()
+    heading -= angle                     # -
+    X(d - 1)
 
-    def derive(self, n: int) -> str:
-        s = self.axiom
-        for _ in range(n):
-            s = ''.join(self.rules.get(ch, ch) for ch in s)
-        return s
+X(depth)
 
-def draw_turtle(program: str, *, angle: float = 25.0, step: float = 6.0) -> None:
-    # Fast drawing
-    turtle.tracer(False, 0)
-    t = turtle.Turtle(visible=False)
-    t.speed(0)
-    t.penup()
-    # Start near bottom center, pointing up
-    t.setheading(90)
-    t.setpos(0, -turtle.window_height() // 2 + 20)
-    t.pendown()
+# plot resultatet
+plt.figure(figsize=(8, 10), dpi=150)
+for x1, y1, x2, y2 in segments:
+    plt.plot([x1, x2], [y1, y2], color="green", linewidth=1)
 
-    stack: List[Tuple[Tuple[float, float], float, int]] = []  # (pos, heading, pensize)
-    t.pensize(2)
-
-    for ch in program:
-        if ch in ('F', 'G'):
-            t.forward(step)
-        elif ch == 'f':
-            t.penup(); t.forward(step); t.pendown()
-        elif ch == '+':
-            t.right(angle)
-        elif ch == '-':
-            t.left(angle)
-        elif ch == '[':
-            stack.append((t.position(), t.heading(), t.pensize()))
-            # Optional: taper branches a bit
-            t.pensize(max(1, t.pensize() - 1))
-        elif ch == ']':
-            if stack:
-                pos, heading, width = stack.pop()
-                t.penup()
-                t.setpos(pos); t.setheading(heading); t.pensize(width)
-                t.pendown()
-        # X and others: no drawing action
-
-    turtle.update()
-    # Keep window open until clicked
-    turtle.Screen().exitonclick()
-
-def main():
-    parser = argparse.ArgumentParser(description="Draw a fractal plant using an L-system.")
-    parser.add_argument("--iters", type=int, default=5, help="Number of derivation steps (depth).")
-    parser.add_argument("--angle", type=float, default=25.0, help="Turn angle in degrees.")
-    parser.add_argument("--step", type=float, default=6.0, help="Forward step length in pixels.")
-    args = parser.parse_args()
-
-    # Classic fractal plant grammar
-    system = LSystem(
-        axiom="X",
-        rules={
-            "X": "F+[[X]-X]-F[-FX]+X",
-            "F": "FF",
-        },
-    )
-
-    # Generate command string and draw
-    program = system.derive(args.iters)
-    draw_turtle(program, angle=args.angle, step=args.step)
-
-if __name__ == "__main__":
-    main()
+plt.axis("equal")
+plt.axis("off")
+plt.show()
