@@ -36,4 +36,4 @@ def sierpinsky_curve(t, depth=5, step=10):
 
 
 t = Turtle(interactive=False)
-sierpinsky_curve(t, depth=6, step=4)
+sierpinsky_curve(t, depth=6, step=12)
