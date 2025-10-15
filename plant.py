@@ -1,7 +1,8 @@
+#Peder Hetland Flaat 
+#Jørgen Lundell Larsen
+
 import math
 import matplotlib.pyplot as plt
-
-# Vi MÅ bruke turtle 
 
 angle = 25
 step = 3
@@ -12,7 +13,7 @@ segments = []
 stack = []
 
 x, y = 0.0, -250.0
-heading = 65
+heading = 60
 
 def forward():
     global x, y
