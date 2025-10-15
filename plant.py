@@ -1,6 +1,8 @@
 import math
 import matplotlib.pyplot as plt
 
+# Vi MÅ bruke turtle 
+
 angle = 25
 step = 3
 depth = 5
@@ -10,7 +12,7 @@ segments = []
 stack = []
 
 x, y = 0.0, -250.0
-heading = 60 
+heading = 65
 
 def forward():
     global x, y
