@@ -1,3 +1,6 @@
+#Peder Hetland Flaat 
+#Jørgen Lundell Larsen
+
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 
