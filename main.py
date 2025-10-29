@@ -1,23 +1,20 @@
 from rectangle import Rectangle
+from sirkel import Sirkel
 from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     t = Turtle(interactive=False)
 
-    shapes = (
-        Rectangle((0, 0), (15, 10)),
-        Rectangle((1, 3), (20, 25)),
-        Rectangle((15, 30), (100, 200))
+    r = 100 
+
+    figurer = (
+        Sirkel((0, 0), r, hjørner=180),
+        Rectangle((-r, -r), (r, r)),                    
     )
 
-    for rectangle in shapes:
-        print(rectangle.info())
-        rectangle.draw(t)
+    for figur in figurer:
+        figur.info()
+        figur.draw(t)
 
     plt.show()
-
-
-
-
-    
