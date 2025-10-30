@@ -1,20 +1,6 @@
-from rectangle import Rectangle
-from sirkel import Sirkel
-from turtleplotlib import Turtle
-import matplotlib.pyplot as plt
+from drawer import draw_figures
+
 
 if __name__ == "__main__":
-    t = Turtle(interactive=False)
+    draw_figures(color="green", linewidth=3)
 
-    r = 100 
-
-    figurer = (
-        Sirkel((0, 0), r, hjørner=180),
-        Rectangle((-r, -r), (r, r)),                    
-    )
-
-    for figur in figurer:
-        figur.info()
-        figur.draw(t)
-
-    plt.show()
