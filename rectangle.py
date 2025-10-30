@@ -25,7 +25,9 @@ class Rectangle:
         width = x2 - x1
         height = y2 - y1
 
+        t.up()              # for å ikke tegne fra sentrum til første punkt
         t.goto((x1, y1))
+        t.down()
 
         for _ in range(2):
             t.forward(width)

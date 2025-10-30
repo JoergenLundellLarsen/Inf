@@ -28,7 +28,9 @@ class Sirkel:
 
         # Flytt til første punkt
         første_x, første_y = punkter[0]
+        t.up()                      # for å ikke tegne fra sentrum til første punkt
         t.goto((første_x, første_y))
+        t.down()
 
         # Tegn hele polygonet
         for (x, y) in punkter[1:]:
