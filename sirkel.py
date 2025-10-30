@@ -5,6 +5,14 @@ class Sirkel:
         self.sentrum = sentrum
         self.radius = radius
         self.hjørner = hjørner
+        self.color = "Red"
+        self.linewidth = 2
+        
+    def color(self, color):
+        self.color = color
+    
+    def set_linewidth(self, linewidth):
+        self.linewidth = linewidth
 
     def draw(self, t):
         cx, cy = self.sentrum
@@ -32,4 +40,4 @@ class Sirkel:
 
     def info(self):
         print(f"Sirkel med sentrum {self.sentrum}, radius {self.radius}, "
-              f"hjørner {self.hjørner}, areal = {self.area():.2f}")
+              f"hjørner {self.hjørner}, areal = {self.area():.2f} Color: {self.color}")
