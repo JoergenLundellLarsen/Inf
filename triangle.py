@@ -4,9 +4,9 @@ class Triangle:
         self.t = top
         self.l = left
         self.r = right
-        self.color = "green"
+        self.color = 'green'
         self.linewidth = 2
-        
+
     def color(self, color):
         self.color = color
     
@@ -42,5 +42,5 @@ class Triangle:
         return abs(x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2)) / 2
 
     def info(self):
-        print(f"Triangle {self.t}, {self.l}, {self.r}, Area = {self.area():.2f} Color: {self.color}")
+        print(f"Triangle {self.t}, {self.l}, {self.r}, Area = {self.area():.2f} Color: {self.color} Linewidth: {self.linewidth}")
  

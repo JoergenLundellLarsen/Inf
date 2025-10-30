@@ -4,7 +4,7 @@ class Rectangle:
     def __init__(self, lower_left, upper_right):
         self.ll = lower_left
         self.ur = upper_right
-        self.color = "blue"
+        self.color = 'blue'
         self.linewidth = 2
         
     def color(self, color):
@@ -17,7 +17,7 @@ class Rectangle:
         return (self.ur[0] - self.ll[0]) * (self.ur[1] - self.ll[1])
 
     def info(self):
-        print(f"Rectangle Lower left: {self.ll} Upper right: {self.ur} Color: {self.color}")
+        print(f"Rectangle Lower left: {self.ll} Upper right: {self.ur} Color: {self.color} Linewidth: {self.linewidth}")
 
     def draw(self, t):
         x1, y1 = self.ll
