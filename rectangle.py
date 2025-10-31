@@ -34,8 +34,7 @@ class Rectangle:
 
         t.up()              # for å ikke tegne fra sentrum til første punkt
         t.goto((x1, y1))
-        t.down()
-
+        t.down()                        
         for _ in range(2):
             t.forward(width)
             t.left(90)
