@@ -2,7 +2,7 @@ from turtleplotlib import Turtle
 import matplotlib.pyplot as plt
 import math
 import random
-
+#Collaborators Peder Flaat og Jørgen Lundell Larsen
 class Triangle:
     def __init__(self, top, left, right):
         self.t = top
