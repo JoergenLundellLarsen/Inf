@@ -1,20 +1,26 @@
 import math
-
+import random
 class Sirkel:
-    def __init__(self, sentrum, radius, hjørner=120):
+    def __init__(self, sentrum, radius,hjørner=120):
         self.sentrum = sentrum
         self.radius = radius
         self.hjørner = hjørner
-        self.color = 'red'
-        self.linewidth = 2
+        self.color = "green"
+        self.linewidth = 1
         
-    def color(self, color):
-        self.color = color
-    
-    def set_linewidth(self, linewidth):
-        self.linewidth = linewidth
 
     def draw(self, t):
+        colors = {
+            "blue": "blue",
+            "red": "red",
+            "black": "black",
+            "green": "green",
+            "purple": "purple"
+        }
+        self.color = random.choice(list(colors.values()))
+        self.linewidth = random.randint(1,5)
+        t.color(self.color)
+        t.width(self.linewidth)
         cx, cy = self.sentrum
         r = self.radius
         n = self.hjørner
@@ -26,13 +32,13 @@ class Sirkel:
             y = cy + r * math.sin(vinkel)
             punkter.append((x, y))
 
-        # Flytt til første punkt
+        #flytt til første punkt
         første_x, første_y = punkter[0]
         t.up()                      # for å ikke tegne fra sentrum til første punkt
         t.goto((første_x, første_y))
         t.down()
 
-        # Tegn hele polygonet
+        #hele polygonet
         for (x, y) in punkter[1:]:
             t.goto((x, y))
         t.goto((første_x, første_y))  # Lukk sirkelen

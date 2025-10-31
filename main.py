@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 def draw_figures():
     t = Turtle(interactive=False)
     r = 100 
-
     figurer = (
         Sirkel((0, 0), r, hjørner=180),
         Rectangle((-r, -r), (r, r)),     
@@ -23,10 +22,7 @@ def draw_figures():
 
     for figur in figurer:
         figur.info()
-        t.color(figur.color)
-        t.width(figur.linewidth)
         figur.draw(t)
-        
         
 
     plt.show()

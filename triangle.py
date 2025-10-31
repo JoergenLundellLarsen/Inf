@@ -1,4 +1,5 @@
 import math
+import random
 class Triangle:
     def __init__(self, top, left, right):
         self.t = top
@@ -7,14 +8,16 @@ class Triangle:
         self.color = 'green'
         self.linewidth = 2
 
-    def color(self, color):
-        self.color = color
-    
-    def set_linewidth(self, linewidth):
-        self.linewidth = linewidth
-
-
     def draw(self, t):
+        colors = {
+            "blue": "blue",
+            "red": "red",
+            "black": "black",
+            "green": "green",
+            "purple": "purple"
+        }
+        self.color = random.choice(list(colors.values()))
+        self.linewidth = random.randint(1,5)
         x1, y1 = self.t
         x2, y2 = self.l
         x3, y3 = self.r
@@ -26,6 +29,9 @@ class Triangle:
         A = math.degrees(math.acos((CA**2 + AB**2 - BC**2) / (2 * CA * AB)))
         B = math.degrees(math.acos((AB**2 + BC**2 - CA**2) / (2 * AB * BC)))
         C = 180 - A - B
+        
+        t.color(self.color)
+        t.width(self.linewidth)
         
         t.forward(AB)
         t.left(180-B)

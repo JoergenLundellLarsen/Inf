@@ -1,17 +1,11 @@
-
+import random
 
 class Rectangle:
     def __init__(self, lower_left, upper_right):
         self.ll = lower_left
         self.ur = upper_right
-        self.color = 'blue'
+        self.color = "green"
         self.linewidth = 2
-        
-    def color(self, color):
-        self.color = color
-    
-    def set_linewidth(self, linewidth):
-        self.linewidth = linewidth
 
     def area(self):
         return (self.ur[0] - self.ll[0]) * (self.ur[1] - self.ll[1])
@@ -20,6 +14,19 @@ class Rectangle:
         print(f"Rectangle Lower left: {self.ll} Upper right: {self.ur} Color: {self.color} Linewidth: {self.linewidth}")
 
     def draw(self, t):
+        colors = {
+            "blue": "blue",
+            "red": "red",
+            "black": "black",
+            "green": "green",
+            "purple": "purple"
+        }
+        self.color = random.choice(list(colors.values()))
+        self.linewidth = random.randint(1,5)
+        
+        t.color(self.color)
+        t.width(self.linewidth)
+
         x1, y1 = self.ll
         x2, y2 = self.ur
         width = x2 - x1
@@ -35,4 +42,4 @@ class Rectangle:
             t.forward(height)
             t.left(90)
 
-a = Rectangle((0, 0), (10, 5))
+
