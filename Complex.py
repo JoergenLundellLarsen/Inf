@@ -3,36 +3,42 @@ class Complex:
         self.real = real
         self.imag = imag
 
+    def __str__(self):
+        return f"{self.real}{self.imag:+}i"
+
+    def __repr__(self):
+        return f"Complex({self.real}, {self.imag})"
+
+    def __add__(self, rhs):
+        rhs = self.is_complex(rhs)
+        return Complex(self.real + rhs.real,
+                       self.imag + rhs.imag)
+
+    def __radd__(self, rhs):
+        return self.__add__(rhs)
+
+    def __sub__(self, rhs):
+        rhs = self.is_complex(rhs)
+        return Complex(self.real - rhs.real,
+                       self.imag - rhs.imag)
+
+    def __rsub__(self, rhs):
+        rhs = self.is_complex(rhs)
+        return Complex(rhs.real - self.real,
+                       rhs.imag - self.imag)
+
     def __mul__(self, rhs):
-        #(a + bj)(c + dj) = (ac − bd) + (ad + bc)j
-        rhs = self.check_if_complex(rhs) 
+        rhs = self.is_complex(rhs)
         a, b = self.real, self.imag
         c, d = rhs.real, rhs.imag
         return Complex(a*c - b*d, a*d + b*c)
+
+    def __rmul__(self, rhs):
+        return self.__mul__(rhs)
     
-    def __str__(self):
-        return f"{self.real}{self.imag:+}i"
-    
-    def __add__(self, rhs):
-        rhs = self.check_if_complex(rhs)
-        a, b = self.real, self.imag
-        c, d = rhs.real, rhs.imag
-        return Complex(a+c, b+d)
-    
-    def __sub__(self, rhs):
-        rhs = self.check_if_complex(rhs)
-        a, b = self.real, self.imag
-        c, d = rhs.real, rhs.imag
-        return Complex(a-c, b-d)
-    
-    def __repr__(self):
-        return f"Complex ({self.real},{self.imag})"
-    
-    def __eq__(self, rhs):
-        return self.real == rhs.real and self.imag == rhs.imag
-    
-    def check_if_complex(self, value):
-        if isinstance(value, Complex):
-            return value
-        elif isinstance(value, (int, float)):
-            return Complex(value, 0)
+    def is_complex(self, rhs):
+        if not isinstance(rhs,Complex): 
+            rhs = Complex(rhs,0)
+            return rhs
+        else:
+            return rhs
