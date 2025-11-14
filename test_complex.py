@@ -1,4 +1,6 @@
-# test_complex.py
+
+#collaborators Jørgen og Peder
+
 import pytest
 from complex import Complex
 
